@@ -11,5 +11,9 @@
 
 'use strict';
 
-require('whatwg-fetch');
-module.exports = self.fetch.bind(self);
+if(global.fetch) {
+  module.exports = global.fetch;
+} else {
+  require('whatwg-fetch');
+  module.exports = self.fetch.bind(self);
+}
